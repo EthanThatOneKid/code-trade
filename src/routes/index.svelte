@@ -13,7 +13,6 @@
 
   onMount(() => {
     console.log("App mounted");
-    setTimeout(() => receivedFriendCode = "test test test", 2500);
   });
 </script>
 
