@@ -1,6 +1,6 @@
 {
-  "name": "sapper-template",
-  "description": "A modern Sapper template",
+  "name": "code-trade",
+  "description": "An implementation of wonder trade for friend codes",
   "version": "2020.0.0",
   "license": "MIT",
   "scripts": {
