@@ -54,6 +54,7 @@
       <form on:submit|preventDefault={handleTradeSubmit}>
         <label for="friend-code">Your friend code:</label>
         <input name="friend-code" type="text" bind:value={friendCode} />
+        <!-- TODO: When trade request is made, clear friend code input -->
         <button type="submit" disabled={isTrading}>
           Trade!
         </button>
