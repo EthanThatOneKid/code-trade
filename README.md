@@ -6,7 +6,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/ethanthatonekid/code-trade?style=social)
 
 ## About 🧠
-This development process of this project was recorded entirely in the [pilot episode](https://github.com/EthanThatOneKid/codecasts/tree/master/code-trade) of [EthanThatOneKid's Codecast](https://github.com/EthanThatOneKid/codecasts).
+The development process of this project was recorded entirely in the [pilot episode](https://github.com/EthanThatOneKid/codecasts/tree/master/code-trade) of [EthanThatOneKid's Codecast](https://github.com/EthanThatOneKid/codecasts).
 
 <a href="https://www.buymeacoffee.com/etok" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 25px !important;" ></a>
 
