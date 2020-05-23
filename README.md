@@ -12,4 +12,8 @@ The development process of this project was recorded entirely in the [pilot epis
 
 ---
 
+[![Buy me a Coffee](https://img.shields.io/badge/buy%20me%20a-coffee-%23FF813F)][bmac]
+
 Created with 💖 by [EthanThatOneKid](https://github.com/EthanThatOneKid)
+
+[bmac]: http://buymeacoff.ee/etok
