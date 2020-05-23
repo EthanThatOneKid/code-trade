@@ -1,4 +1,4 @@
-# Code Trade 😎
+# Code Trade 🔄
 > An implementation of wonder trade for friend codes
 
 ![GitHub language count](https://img.shields.io/github/languages/count/ethanthatonekid/code-trade)
