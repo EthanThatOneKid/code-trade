@@ -6,12 +6,11 @@ import * as sapper from '@sapper/server';
 import WebSocket from 'ws';
 dotenv.config();
 
-const { PORT, NODE_ENV, PROJECT_NAME } = process.env;
+const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 
 const { server } = polka() // You can also use Express
 	.use(
-		PROJECT_NAME,
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
 		sapper.middleware()
