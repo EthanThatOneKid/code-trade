@@ -15,7 +15,8 @@ const store = writable(defaultTradeServiceValue);
 export const initializeTradeServive = () => {
 
   const host = window.location.host || "localhost:3000";
-  const socket = new WebSocket(`wss://${host}`);
+  const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+  const socket = new WebSocket(`${protocol}://${host}`);
   console.log({ socket });
 
   socket.addEventListener("open", event => {
