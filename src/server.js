@@ -23,35 +23,48 @@ const { server } = polka() // You can also use Express
 const wss = new WebSocket.Server({ server });
 
 // https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
-const uuidv4 = () => {
-	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-		const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-		return v.toString(16);
-	});
-};
+// const uuidv4 = () => {
+// 	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+// 		const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+// 		return v.toString(16);
+// 	});
+// };
 
-const broadcast = details => {
-	const meta = { id: uuidv4(), ts: Date.now() };
-	const raw = JSON.stringify({ details, meta });
-	wss.clients.forEach(client => {
-		if (client.readyState === WebSocket.OPEN) {
-			client.send(raw);
-		}
-	})
+let online = 0;
+let tradePartner = null;
+
+const requestTradePartner = (socket, { clientFriendCode }) => {
+	if (tradePartner === null) {
+		tradePartner = { socket, friendCode: clientFriendCode };
+	} else {
+		socket.send(JSON.stringify({
+			type: "trade_partner_found",
+			details: { tradePartnerFriendCode: tradePartner.friendCode }
+		}));
+		tradePartner.socket.send(JSON.stringify({
+			type: "trade_partner_found",
+			details: { tradePartnerFriendCode: clientFriendCode }
+		}));
+		tradePartner = null;
+	}
 };
 
 wss.on('connection', socket => {
+	online++;
 
 	socket.on('close', () => {
-		// TODO: Do something
+		online--;
 	});
 
-	socket.on('trade', json => {
-		console.log("TRADE", { json });
-	});
-
-	socket.on('ping', json => {
-		console.log("PONG");
+	socket.on('message', serializedMessage => {
+		const { type, details } = JSON.parse(serializedMessage);
+		switch (type) {
+			case "request_trade_partner":
+				requestTradePartner(socket, details);
+				break;
+			default:
+				console.log(`No message type ${type} accounted for.`);
+		}
 	});
 
 });

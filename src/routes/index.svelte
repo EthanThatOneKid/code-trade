@@ -1,18 +1,27 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  // import { writable } from "svelte/store";
   
-  let friendCode = "";
-  let receivedFriendCode = "";
-  let trading = false;
+  let friendCode: string = "";
+  let receivedFriendCode: string = "";
+  let isTrading: boolean = false;
+  let requestTradePartner;
 
   const handleTradeSubmit = event => {
-    trading = true;
-    console.log({ event, friendCode });
-  }
+    if (!isTrading) {
+      requestTradePartner(friendCode);
+    }
+  };
 
   onMount(() => {
     console.log("App mounted");
+    import("./_tradeService")
+      .then(({ default: tradeService }) => {
+        requestTradePartner = tradeService.requestTradePartner;
+        tradeService.subscribe(message => {
+          isTrading = message.isTrading;
+          receivedFriendCode = message.tradePartnerFriendCode || "";
+        });
+      });
   });
 </script>
 
