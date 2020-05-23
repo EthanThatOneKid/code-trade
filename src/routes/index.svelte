@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { initializeTradeServive } from './_tradeService';
   
   let friendCode: string = "";
   let receivedFriendCode: string = "";
@@ -14,15 +15,14 @@
 
   onMount(() => {
     console.log("App mounted");
-    import("./_tradeService")
-      .then(({ default: tradeService }) => {
-        requestTradePartner = tradeService.requestTradePartner;
-        tradeService.subscribe(message => {
-          isTrading = message.isTrading;
-          receivedFriendCode = message.tradePartnerFriendCode || "";
-        });
-      });
+    const tradeService = initializeTradeServive();
+    requestTradePartner = tradeService.requestTradePartner;
+    tradeService.subscribe(message => {
+      isTrading = message.isTrading;
+      receivedFriendCode = message.tradePartnerFriendCode || "";
+    });
   });
+
 </script>
 
 <style>

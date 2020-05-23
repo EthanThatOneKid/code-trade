@@ -12,44 +12,48 @@ const defaultTradeServiceValue: TradeServiceValue = {
 
 const store = writable(defaultTradeServiceValue);
 
-const host = window.location.host || "localhost:3000";
-const socket = new WebSocket(`ws://${host}`);
-console.log({ socket });
+export const initializeTradeServive = () => {
 
-socket.addEventListener("open", event => {
-  console.log("SOCKET CONNECTED");
-});
+  const host = window.location.host || "localhost:3000";
+  const socket = new WebSocket(`ws://${host}`);
+  console.log({ socket });
 
-socket.addEventListener("message", ({ data: serializedMessage }) => {
-  const { type, details: { tradePartnerFriendCode } } = JSON.parse(serializedMessage);
-  switch (type) {
-    case "trade_partner_found":
-      store.set({
-        tradePartnerFriendCode: `Trade partner found!\r\n${tradePartnerFriendCode}`,
-        isTrading: false
+  socket.addEventListener("open", event => {
+    console.log("SOCKET CONNECTED");
+  });
+
+  socket.addEventListener("message", ({ data: serializedMessage }) => {
+    const { type, details: { tradePartnerFriendCode } } = JSON.parse(serializedMessage);
+    switch (type) {
+      case "trade_partner_found":
+        store.set({
+          tradePartnerFriendCode: `Trade partner found!\r\n${tradePartnerFriendCode}`,
+          isTrading: false
+        });
+        break;
+      default:
+        console.log(`No message type ${type} accounted for.`);
+    }
+  });
+
+  const requestTradePartner = (clientFriendCode: any) => {
+    if (socket.readyState <= 1) {
+      const serializedMessage = JSON.stringify({
+        type: "request_trade_partner",
+        details: { clientFriendCode }
       });
-      break;
-    default:
-      console.log(`No message type ${type} accounted for.`);
-  }
-});
+      store.set({
+        tradePartnerFriendCode: "Waiting for trade partner...",
+        isTrading: true
+      });
+      socket.send(serializedMessage);
 
-const requestTradePartner = (clientFriendCode: any) => {
-  if (socket.readyState <= 1) {
-    const serializedMessage = JSON.stringify({
-      type: "request_trade_partner",
-      details: { clientFriendCode }
-    });
-    store.set({
-      tradePartnerFriendCode: "Waiting for trade partner...",
-      isTrading: true
-    });
-    socket.send(serializedMessage);
+    }
+  };
 
-  }
-};
+  return {
+    subscribe: store.subscribe,
+    requestTradePartner
+  };
 
-export default {
-  subscribe: store.subscribe,
-  requestTradePartner
 };
