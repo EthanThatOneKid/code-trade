@@ -26,15 +26,39 @@
 </script>
 
 <style>
+
+.window {
+  width: min-content;
+}
+
 </style>
 
 <svelte:head>
   <title>Code Trade</title>
 </svelte:head>
 
-<h1>Code Trade</h1>
-<p>{receivedFriendCode}</p>
-<form on:submit|preventDefault={handleTradeSubmit}>
-  <input bind:value={friendCode} />
-  <input type="submit" value="Trade!" />
-</form>
+<div class="window">
+  <div class="title-bar">
+    <div class="title-bar-text">
+      Code Trade
+    </div>
+    <div class="title-bar-controls">
+      <!-- <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button> -->
+    </div>
+  </div>
+  <div class="window-body">
+    <p>{receivedFriendCode}</p>
+    <section class="field-row">
+      <form on:submit|preventDefault={handleTradeSubmit}>
+        <label for="friend-code">Your friend code:</label>
+        <input name="friend-code" type="text" bind:value={friendCode} />
+        <button type="submit" disabled={isTrading}>
+          Trade!
+        </button>
+        <!-- TODO: When isTrading, enable cancel button -->
+      </form>
+    </section>
+  </div>
+</div>
