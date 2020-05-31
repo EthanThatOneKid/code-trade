@@ -6,9 +6,19 @@
 ![GitHub forks](https://img.shields.io/github/forks/ethanthatonekid/code-trade?style=social)
 
 ## About 🧠
-The development process of this project was recorded entirely in the [pilot episode](https://github.com/EthanThatOneKid/codecasts/tree/master/code-trade) of [EthanThatOneKid's Codecast](https://github.com/EthanThatOneKid/codecasts). The live webapp is hosted on Heroku and is available for you to visit [here](https://code-trade.herokuapp.com/).
+The development process of this project was recorded entirely in the [pilot episode](https://youtu.be/-jtmtDOsr5U) of [EthanThatOneKid's Codecast](https://github.com/EthanThatOneKid/codecasts). The live webapp is hosted on Heroku and is available for you to visit [here](https://code-trade.herokuapp.com/).
 
-<a href="https://www.buymeacoffee.com/etok" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 25px !important;" ></a>
+## Develop 💫
+1. Clone this repository: `git clone https://github.com/EthanThatOneKid/code-trade`
+1. Install the project's dependencies: `cd code-trade & npm i`
+1. Spin up the development server: `npm run dev`
+
+## Deployment 🚀
+1. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
+1. Log in to Heroku: `heroku login`
+1. Add this repository to Heroku as a remote: `heroku git:clone -a code-trade`
+1. Deploy to Heroku: `git push heroku master`
+
 
 ---
 
