@@ -16,9 +16,7 @@ The development process of this project was recorded entirely in the [pilot epis
 ## Deployment 🚀
 1. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
 1. Log in to Heroku: `heroku login`
-1. Add this repository to Heroku as a remote: `heroku git:clone -a code-trade`
 1. Deploy to Heroku: `git push heroku master`
-
 
 ---
 
