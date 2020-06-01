@@ -6,7 +6,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/ethanthatonekid/code-trade?style=social)
 
 ## About 🧠
-The development process of this project was recorded entirely in the [pilot episode](https://youtu.be/-jtmtDOsr5U) of [EthanThatOneKid's Codecast](https://github.com/EthanThatOneKid/codecasts). The live webapp is hosted on Heroku and is available for you to visit [here](https://code-trade.herokuapp.com/).
+The development process of this project was recorded entirely in the [pilot episode](https://youtu.be/4gpAqkeyAyk) of [EthanThatOneKid's Codecast](https://github.com/EthanThatOneKid/codecasts). The live webapp is hosted on Heroku and is available for you to visit [here](https://code-trade.herokuapp.com/).
 
 ## Develop 💫
 1. Clone this repository: `git clone https://github.com/EthanThatOneKid/code-trade`
